@@ -1,0 +1,82 @@
+﻿  Source.cpp
+C:\software\programacion\MSVStudio2022\VC\Tools\MSVC\14.34.31933\include\unordered_map(50,99): error C2280: 'std::_Uhash_compare<_Kty,_Hasher,_Keyeq>::_Uhash_compare(const std::_Uhash_compare<_Kty,_Hasher,_Keyeq> &)': se está intentando hacer referencia a una función eliminada.
+          with
+          [
+              _Kty=ii,
+              _Hasher=std::hash<ii>,
+              _Keyeq=std::equal_to<ii>
+          ]
+C:\software\programacion\MSVStudio2022\VC\Tools\MSVC\14.34.31933\include\xhash(175,1): message : el compilador generó 'std::_Uhash_compare<_Kty,_Hasher,_Keyeq>::_Uhash_compare' aquí
+          with
+          [
+              _Kty=ii,
+              _Hasher=std::hash<ii>,
+              _Keyeq=std::equal_to<ii>
+          ]
+C:\software\programacion\MSVStudio2022\VC\Tools\MSVC\14.34.31933\include\xhash(175,1): message : "std::_Uhash_compare<_Kty,_Hasher,_Keyeq>::_Uhash_compare(const std::_Uhash_compare<_Kty,_Hasher,_Keyeq> &)": la función se eliminó implícitamente porque un objeto miembro de datos invoca a una función "std::_Compressed_pair<_Hasher,std::_Compressed_pair<_Keyeq,float,true>,true>::_Compressed_pair(const std::_Compressed_pair<_Hasher,std::_Compressed_pair<_Keyeq,float,true>,true> &)" eliminada o inaccesible.
+          with
+          [
+              _Kty=ii,
+              _Hasher=std::hash<ii>,
+              _Keyeq=std::equal_to<ii>
+          ]
+          and
+          [
+              _Hasher=std::hash<ii>,
+              _Keyeq=std::equal_to<ii>
+          ]
+C:\software\programacion\MSVStudio2022\VC\Tools\MSVC\14.34.31933\include\xmemory(1390,1): message : "std::_Compressed_pair<_Hasher,std::_Compressed_pair<_Keyeq,float,true>,true>::_Compressed_pair(const std::_Compressed_pair<_Hasher,std::_Compressed_pair<_Keyeq,float,true>,true> &)": la función se eliminó implícitamente porque un objeto clase base invoca a una función "std::hash<ii>::hash(const std::hash<ii> &)" eliminada o inaccesible.
+          with
+          [
+              _Hasher=std::hash<ii>,
+              _Keyeq=std::equal_to<ii>
+          ]
+C:\software\programacion\MSVStudio2022\VC\Tools\MSVC\14.34.31933\include\type_traits(2185,1): message : "std::hash<ii>::hash(const std::hash<ii> &)": la función se eliminó implícitamente porque un objeto clase base invoca a una función "std::_Conditionally_enabled_hash<_Kty,false>::_Conditionally_enabled_hash(const std::_Conditionally_enabled_hash<_Kty,false> &)" eliminada o inaccesible.
+          with
+          [
+              _Kty=ii
+          ]
+C:\software\programacion\MSVStudio2022\VC\Tools\MSVC\14.34.31933\include\type_traits(2171,5): message : "std::_Conditionally_enabled_hash<_Kty,false>::_Conditionally_enabled_hash(const std::_Conditionally_enabled_hash<_Kty,false> &)": la función se eliminó explícitamente.
+          with
+          [
+              _Kty=ii
+          ]
+C:\software\programacion\MSVStudio2022\VC\Tools\MSVC\14.34.31933\include\unordered_map(50,1): message : al compilar la función del miembro clase plantilla "std::_Umap_traits<_Kty,_Ty,std::_Uhash_compare<_Kty,_Hasher,_Keyeq>,_Alloc,false>::_Umap_traits(const _Tr &) noexcept(false)"
+          with
+          [
+              _Kty=ii,
+              _Ty=Nodo,
+              _Hasher=std::hash<ii>,
+              _Keyeq=std::equal_to<ii>,
+              _Alloc=std::allocator<std::pair<const ii,Nodo>>,
+              _Tr=std::_Uhash_compare<ii,std::hash<ii>,std::equal_to<ii>>
+          ]
+C:\software\programacion\MSVStudio2022\VC\Tools\MSVC\14.34.31933\include\xhash(375,21): message : Vea la referencia a la creación de una instancia de la función plantilla "std::_Umap_traits<_Kty,_Ty,std::_Uhash_compare<_Kty,_Hasher,_Keyeq>,_Alloc,false>::_Umap_traits(const _Tr &) noexcept(false)" que se está compilando
+          with
+          [
+              _Kty=ii,
+              _Ty=Nodo,
+              _Hasher=std::hash<ii>,
+              _Keyeq=std::equal_to<ii>,
+              _Alloc=std::allocator<std::pair<const ii,Nodo>>,
+              _Tr=std::_Uhash_compare<ii,std::hash<ii>,std::equal_to<ii>>
+          ]
+C:\software\programacion\MSVStudio2022\VC\Tools\MSVC\14.34.31933\include\xhash(334,1): message : Vea la referencia a la creación de una instancia de clase plantilla "std::_Umap_traits<_Kty,_Ty,std::_Uhash_compare<_Kty,_Hasher,_Keyeq>,_Alloc,false>" que se está compilando
+          with
+          [
+              _Kty=ii,
+              _Ty=Nodo,
+              _Hasher=std::hash<ii>,
+              _Keyeq=std::equal_to<ii>,
+              _Alloc=std::allocator<std::pair<const ii,Nodo>>
+          ]
+C:\software\programacion\MSVStudio2022\VC\Tools\MSVC\14.34.31933\include\unordered_map(67,1): message : Vea la referencia a la creación de una instancia de clase plantilla "std::_Hash<std::_Umap_traits<_Kty,_Ty,std::_Uhash_compare<_Kty,_Hasher,_Keyeq>,_Alloc,false>>" que se está compilando
+          with
+          [
+              _Kty=ii,
+              _Ty=Nodo,
+              _Hasher=std::hash<ii>,
+              _Keyeq=std::equal_to<ii>,
+              _Alloc=std::allocator<std::pair<const ii,Nodo>>
+          ]
+C:\Users\usuario_local\Downloads\IC P1\Source.cpp(60,21): message : Vea la referencia a la creación de una instancia de clase plantilla "std::unordered_map<ii,Nodo,std::hash<ii>,std::equal_to<ii>,std::allocator<std::pair<const ii,Nodo>>>" que se está compilando

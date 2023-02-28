@@ -97,23 +97,22 @@ void AStar(ii s, ii dest, unordered_map<ii, Nodo, hash_pair> &distancias, unorde
 			return;
 		for (auto adj : adjList[front.pos])
 		{
-			Nodo aux = distancias[adj];
-			if (!aux.expandido)
+			if (!distancias[adj].expandido)
 			{
-				if (aux.dist == INT_MAX)
+				if (distancias[adj].dist == INT_MAX)
 				{
-					aux.dist = front.dist + 1;
-					aux.distEuch += aux.dist;
-					aux.desde = front.pos;
-					pq.push(aux);
+					distancias[adj].dist = front.dist + 1;
+					distancias[adj].distEuch += distancias[adj].dist;
+					distancias[adj].desde = front.pos;
+					pq.push(distancias[adj]);
 				}
-				else if (front.dist + 1 < aux.dist)
+				else if (front.dist + 1 < distancias[adj].dist)
 				{
-					aux.distEuch -= aux.dist;
-					aux.dist = front.dist + 1;
-					aux.distEuch += aux.dist;
-					aux.desde = front.pos;
-					pq.push(aux);
+					distancias[adj].distEuch -= distancias[adj].dist;
+					distancias[adj].dist = front.dist + 1;
+					distancias[adj].distEuch += distancias[adj].dist;
+					distancias[adj].desde = front.pos;
+					pq.push(distancias[adj]);
 				}
 			}
 		}

@@ -36,21 +36,24 @@ struct Nodo
 	ii desde;
 	int dist;
 	double distEuch;
+	bool expandido;
 
 	Nodo()
 	{
 		this->pos = {0, 0};
 		this->desde = {0, 0};
-		this->dist = 0;
-		this->distEuch = INT_MAX;
+		this->dist = INT_MAX;
+		this->distEuch = 0;
+		this->expandido = false;
 	}
 
 	Nodo(ii pos)
 	{
 		this->pos = pos;
 		this->desde = {-1, -1};
-		this->dist = 0;
-		this->distEuch = INT_MAX;
+		this->dist = INT_MAX;
+		this->distEuch = 0;
+		this->expandido = false;
 	}
 
 	Nodo(ii pos, int dist, double distEuch)
@@ -59,6 +62,7 @@ struct Nodo
 		this->desde = {-1, -1};
 		this->dist = dist;
 		this->distEuch = distEuch;
+		this->expandido = false;
 	}
 
 	Nodo(ii pos, ii desde, int dist, double distEuch)
@@ -67,41 +71,50 @@ struct Nodo
 		this->desde = desde;
 		this->dist = dist;
 		this->distEuch = distEuch;
+		this->expandido = false;
 	}
 
 	bool operator>(const Nodo &otro) const
 	{
-		return ((this->distEuch > otro.distEuch) || (this->dist > otro.dist && this->distEuch > otro.distEuch));
+		return ((this->distEuch > otro.distEuch) || (this->dist > otro.dist && this->distEuch == otro.distEuch));
 	}
 };
 
 using vii = vector<ii>;
 
-void AStar(ii s, ii dest, unordered_map<ii, Nodo, hash_pair> &dist, unordered_map<ii, vii, hash_pair> &adjList)
+void AStar(ii s, ii dest, unordered_map<ii, Nodo, hash_pair> &distancias, unordered_map<ii, vii, hash_pair> &adjList)
 {
 	priority_queue<Nodo, vector<Nodo>, greater<Nodo>> pq;
-	double distEuch = hypot((s.first - dest.first), (s.second - dest.second));
-	pq.push({s, 0, distEuch});
+	Nodo start = distancias[s];
+	start.dist = 0;
+	pq.push(start);
 	while (!pq.empty())
 	{
 		Nodo front = pq.top();
 		pq.pop();
-		int d = front.dist;
-		ii u = front.pos;
-		if (u == dest)
+		distancias[front.pos].expandido = true;
+		if (front.pos == dest)
 			return;
-		for (auto pos : adjList[u])
+		for (auto adj : adjList[front.pos])
 		{
-			Nodo a = dist[pos];
-			int resA = front.dist + a.dist;
-			int resB = dist[a.pos].dist;
-			if (front.dist + a.dist < dist[a.pos].dist)
+			Nodo aux = distancias[adj];
+			if (!aux.expandido)
 			{
-				dist[pos].distEuch -= dist[a.pos].dist;
-				dist[pos].dist = front.dist + a.dist;
-				dist[pos].distEuch += dist[a.pos].dist;
-				dist[pos].desde = front.pos;
-				pq.push(a);
+				if (aux.dist == INT_MAX)
+				{
+					aux.dist = front.dist + 1;
+					aux.distEuch += aux.dist;
+					aux.desde = front.pos;
+					pq.push(aux);
+				}
+				else if (front.dist + 1 < aux.dist)
+				{
+					aux.distEuch -= aux.dist;
+					aux.dist = front.dist + 1;
+					aux.distEuch += aux.dist;
+					aux.desde = front.pos;
+					pq.push(aux);
+				}
 			}
 		}
 	}
@@ -109,9 +122,9 @@ void AStar(ii s, ii dest, unordered_map<ii, Nodo, hash_pair> &dist, unordered_ma
 
 void findEuchlideanDistance(unordered_map<ii, Nodo, hash_pair> &distancias, const ii &dest)
 {
-	for (auto node : distancias)
+	for (auto it = distancias.begin(); it != distancias.end(); it++)
 	{
-		node.second.distEuch = hypot(pow(node.first.first - dest.first, 2), pow(node.first.second - dest.second, 2));
+		it->second.distEuch = hypot((it->first.first - dest.first), (it->first.second - dest.second));
 	}
 }
 
